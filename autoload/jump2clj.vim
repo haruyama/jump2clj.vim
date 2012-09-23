@@ -49,7 +49,7 @@ function! s:jump_with_clj_path(cmd, string)
 
   let l:clj_path = substitute(l:clj_path,'$','.clj','')
 
-  let l:path = &l:path
+  let l:path = &path
   if l:cur_lib_path != ['']
     let l:path = l:path . ',' . join(l:cur_lib_path, ',')
   endif
