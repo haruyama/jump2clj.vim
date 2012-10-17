@@ -56,8 +56,7 @@ function! s:jump_with_clj_path(cmd, string)
 
   let l:path_arr = split(l:path, ',')
 
-  for i in range(0, len(l:path_arr)-1)
-    let l:a_path = l:path_arr[i]
+  for l:a_path in l:path_arr
     if filereadable(l:a_path . '/' . l:clj_path)
       if a:cmd == 'gf'
         return l:a_path . '/' . l:clj_path
@@ -99,8 +98,8 @@ function! s:get_current_lib_path()
     if l:cur_file == ''
       return
     endif
-    for i in range(0,len(s:search_lib_dir)-1)
-      let l:cur_file = substitute(substitute(l:cur_file,'/[^(/)]*$','','g'),'$','/' . s:search_lib_dir[i] ,'g')
+    for l:search_lib in s:search_lib_dir
+      let l:cur_file = substitute(substitute(l:cur_file,'/[^(/)]*$','','g'),'$','/' . l:search_lib ,'g')
       if isdirectory(l:cur_file)
         return [l:cur_file]
       endif
